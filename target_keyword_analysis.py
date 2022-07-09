@@ -16,55 +16,6 @@ API_KEY = '01000000003b115e7c398acfeb7490f3b402d4c59d7f0f55f47a21d32181d03d5e1e0
 SECRET_KEY = 'AQAAAAA7EV58OYrP63SQ87QC1MWdtmaeF9FG+RlckfOd2tevGw=='
 CUSTOMER_ID = 2522954
 
-# ManageCustomerLink Usage Sample
-
-# uri = '/customer-links'
-# method = 'GET'
-# r = requests.get(BASE_URL + uri, params={'type': 'MYCLIENTS'}, headers=get_header(method, uri, API_KEY, SECRET_KEY, CUSTOMER_ID))
-
-# print("response status_code = {}".format(r.status_code))
-# print("response body = {}".format(r.json()))
-# print("====================")
-
-# BusinessChannel Usage Sample
-
-# uri = '/ncc/channels'
-# method = 'GET'
-# r = requests.get(BASE_URL + uri, headers=get_header(method, uri, API_KEY, SECRET_KEY, CUSTOMER_ID))
-
-# print("response status_code = {}".format(r.status_code))
-# print("response body = {}".format(r.json()))
-
-# print("====================")
-# Adgroup Usage Sample
-
-# 1. GET adgroup Usage Sample
-
-uri = '/ncc/adgroups'
-method = 'GET'
-r = requests.get(BASE_URL + uri, headers=get_header(method, uri, API_KEY, SECRET_KEY, CUSTOMER_ID))
-
-print("response status_code = {}".format(r.status_code))
-print("response body = {}".format(r.json()))
-target_adgroup = r.json()[0]
-print("====================")
-# Stat Usage Sample
-
-# 1. GET Summary Report per multiple entities 
-
-# uri = '/stats'
-# method = 'GET'
-# stat_ids = [target_adgroup['nccCampaignId'], target_adgroup['nccAdgroupId']]
-# r = requests.get(BASE_URL + uri, params={
-#     'ids': stat_ids, 
-#     'fields': '["clkCnt","impCnt","salesAmt", "ctr", "cpc", "avgRnk", "ccnt"]', 
-#     'timeRange': '{"since":"2022-07-01","until":"2022-07-08"}'
-#     }, headers=get_header(method, uri, API_KEY, SECRET_KEY, CUSTOMER_ID))
-
-# print("response status_code = {}".format(r.status_code))
-# print("response body = {}".format(r.json()))
-# print("====================")
-
 #### 연관 키워드 추출
 # uri  ='/keywordstool'
 # method = 'GET'
@@ -122,16 +73,40 @@ print("====================")
 # 키워드의 월간 예상 실적(복수 금액 가능)
 # bid: 입찰가(최대 100개까지), clicks: 예상 클릭수, impressions: ?, cost: 예상비용
 # keyword plus 시 impression +72
+input_keyword = '진공청소기'
 first_bid_settings = list(range(100, 5001, 100))
 # print(first_bid_settings)
 uri = '/estimate/performance/keyword'
 method = 'POST'
-r = requests.post(BASE_URL + uri, json={'device': 'PC', 'keywordplus': False, 'key': '진공청소기','bids': first_bid_settings}, headers=get_header(method, uri, API_KEY, SECRET_KEY, CUSTOMER_ID))
+r = requests.post(BASE_URL + uri, json={'device': 'PC', 'keywordplus': False, 'key': input_keyword,'bids': first_bid_settings}, headers=get_header(method, uri, API_KEY, SECRET_KEY, CUSTOMER_ID))
 print("response body: = {}".format(r.json()))
+expected_clks = []
 for i in range(50):
-    expected_clks = r.json()['estimate'][i]['clicks']
-    print(first_bid_settings[i], expected_clks)
+    expected_clk = r.json()['estimate'][i]['clicks']
+    expected_clks.append(expected_clk)
+    print("입찰가: ", first_bid_settings[i], " / 예상 클릭수: ", expected_clk)
+print("======================================")
+##사용자가 키워드 입찰가를 3000원으로 설정 했다고 가정
+selected_bid_idx = 29
+print("선택된 입찰가: ", first_bid_settings[selected_bid_idx])
+print("예상 총 비용: ", r.json()['estimate'][selected_bid_idx]['cost'])
 
+uri  ='/keywordstool'
+method = 'GET'
+
+r = requests.get(BASE_URL + uri + '?hintKeywords={}&showDetail=1'.format(input_keyword),
+                 headers=get_header(method, uri, API_KEY, SECRET_KEY, CUSTOMER_ID))
+
+# print("response body = {}".format(r.json()))
+print(r.json()['keywordList'][0])
+
+qcPcCnt = r.json()['keywordList'][0]['monthlyPcQcCnt'] #월간 검색수 PC
+qcMobileCnt = r.json()['keywordList'][0]['monthlyMobileQcCnt'] #월간 검색수 Mobile
+clkPcCnt = r.json()['keywordList'][0]['monthlyAvePcClkCnt'] #월간 클릭수 PC
+clkMobileCnt = r.json()['keywordList'][0]['monthlyAveMobileClkCnt'] #월간 클릭수 Mobile
+
+print("월간 검색 수 대비 예상 노출 수 비율: ")
+print("예상 노출 수 대비 예상 클릭 수 비율: ")
 
 ## 키워드의 월간 예상 실적(복수 키워드 가능)
 ## bid: 입찰가, clicks: 예상 클릭수, impressions: ?, cost: 예상비용

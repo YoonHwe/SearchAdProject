@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="data_analyze.css">
+</head>
+<body>
+    <div>
+        <ul>
+            <li>월간 검색수
+                <ul>
+                    PC: <li id="monthlySearchCountPc">1830</li>
+                    Mobile: <li id="monthlySearchCountMobile">8190</li>
+                </ul>
+            </li>
+            
+            <li>월간 클릭수
+                <ul>
+                    PC: <li id="monthlyClickCountPc">46.3</li>
+                    Mobile:<li id="monthlyClickCountMobile">136.8</li>
+                </ul>
+            </li>
+            <li>월간 클릭률
+                <ul>
+                    PC: <li id="monthlyClickRatePc">2.69</li>
+                    Mobile: <li id="monthlyClickRateMobile">1.79</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <h1>with 원 그래프</h1>
+    <div class="chart-wrap">
+        <div class="circle-graph">
+            <div class="chart circle1"><span class="center">검색수</span></div>
+            <div class="chart circle2"><span class="center">클릭수</span></div>
+            <div class="chart circle3"><span class="center">클릭률</span></div>
+        </div>
+    </div>
+    <button onClick=replay()>reset</button>
+</body>
+<script src="data_analyze.js"></script>
+</html>
