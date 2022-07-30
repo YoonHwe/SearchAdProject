@@ -30,16 +30,21 @@
 <img src="result_image_video/searchAdAPIGuide.png" style="width: 60% height: 50%">
 <hr>
 
-<h2>service 1</h2>
-<img src="result_image_video/service1_desc.png" style="width: 60% height: 60%">
+<h2>세부 기능</h2>
+<h3>키워드 수치 분석 - service1.php</h3>
+<img src="result_image_video/service1_desc.png" style="width: 60% height: 50%">
 <p>실행영상: https://youtu.be/Xi3OEJPAXSA</p>
 
 <hr>
-<h2>service 2</h2>
+<h3>키워드 추이 분석 - service2.php</h3>
 <img src="result_image_video/service2_desc.png" style="width: 60% height: 60%">
 <p>실행영상: https://youtu.be/8Xl6sfIrjzY</p>
 
 <hr>
-<h2>service 3</h2>
+<h3>연관 키워드 비교 - service3.php</h3>
 <img src="result_image_video/service3_desc.png" style="width: 60% height: 60%">
 <p>실행영상: https://youtu.be/3V17ZRZim_Y</p>
+
+<hr>
+<h2>용어 설명</h2>
+<P>term.txt 참고</p>
