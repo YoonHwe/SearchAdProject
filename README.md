@@ -31,13 +31,15 @@
 <hr>
 
 <h2>service 1</h2>
+<img src="result_image_video/service1_desc.png" style="width: 60% height: 60%">
 <p>실행영상: https://youtu.be/Xi3OEJPAXSA</p>
 
 <hr>
 <h2>service 2</h2>
+<img src="result_image_video/service2_desc.png" style="width: 60% height: 60%">
 <p>실행영상: https://youtu.be/8Xl6sfIrjzY</p>
 
 <hr>
 <h2>service 3</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3V17ZRZim_Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<img src="result_image_video/service3_desc.png" style="width: 60% height: 60%">
 <p>실행영상: https://youtu.be/3V17ZRZim_Y</p>
