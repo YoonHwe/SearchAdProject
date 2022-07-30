@@ -121,8 +121,8 @@
         echo "<script language='Javascript'>localStorage.setItem('$key', '$data');</script>";
     }
     // 네이버 데이터랩 통합검색어 트렌드 Open API 예제
-    $client_id = "9fscdfLqeWN8Iu8Kphdt"; // 네이버 개발자센터에서 발급받은 CLIENT ID
-    $client_secret = "j6AFlTxh5W";// 네이버 개발자센터에서 발급받은 CLIENT SECRET
+    $client_id = "YOUR_CLIENT_ID"; // 네이버 개발자센터에서 발급받은 CLIENT ID
+    $client_secret = "YOUT_CLIENT_SECRET";// 네이버 개발자센터에서 발급받은 CLIENT SECRET
     $url = "https://openapi.naver.com/v1/datalab/search";
     //월별 검색량 추이
     $body = "{\"startDate\":\"2021-07-01\",\"endDate\":\"2022-06-30\",\"timeUnit\":\"month\",\"keywordGroups\":[{\"groupName\":\"$targetKeyword\",\"keywords\":[\"$targetKeyword\"]}]}";
